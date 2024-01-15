@@ -7,7 +7,7 @@ Apprentissage :
 	☐ Modifier la texture d'une case / supperposer des textures
 
 Fonctionnement du programme:
-	☐ Checker si la map est valide
+	✔ Checker si la map est valide
 	✔ 	|->	Regarder si la map est un rectangle entoure de murs 				|| Faire une fonction check_map(char **map);
 	✔ 	|-> Regarder le nombre d'elements dans la map
 	✔ 		|-> 1 player
@@ -16,9 +16,10 @@ Fonctionnement du programme:
 	✔ 		|-> N ground
 	✔ 		|-> N wall
 	✔ 		|-> pas d'autres caracteres
-	✔ |->	Regarder s'il existe un chemin valide (le joueur peut acceder a tous les collectibles et a la sortie)	|| Faire une fonction check_path(char **map);
+	✔ 	|->	Regarder s'il existe un chemin valide (le joueur peut acceder a tous les collectibles et a la sortie)	|| Faire une fonction check_path(char **map);
 	✔ 		|-> Faire une copie de la map originelle, avec les murs, le caractere a trouver et le player puis DFS dedans avant de free la map
-	✔ Charger la MLX
+	☐ 	|->	La map doit tenir dans l'ecran donc diviser la taille par 32 et regarde si ca rentre
+	✔ Charger la MLX 
 	✔ Ouvrir une fenetre et stocker le pointeur sur cette fenetre
 	☐ Charger les textures en fonction de la map
 	☐ 	|->	Free toutes les textures chargees si une ne se charge pas correctement et arreter le programme
@@ -29,13 +30,15 @@ Fonctionnement du programme:
 	
 	To change:
 		✔ Rajouter le free(map) dans la fonction ft_error();
+		✔ map_alloc : faire en sorte que map[i] et line ne soient pas a la meme adresse pour ne pas avoir de probleme
+		☐ Rajouter le fait que la map n'est pas valide si il n'y a pas un collectible
 		Ressources :
 			https://chat.openai.com/share/183d3029-a806-418f-82f3-7bb8722e4b75
 			
 			
 Notes :
-	Lenght	= nombre de colonnes
-	Width 	= nombre de lignes
+	Lenght	= nombre de colonnes + 1
+	Width 	= nombre de lignes + 1
 	
 	W = wall
 	E = exit

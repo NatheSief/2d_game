@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:40:33 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/06 17:06:57 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/11 10:55:45 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_printf.h"
-# include "get_next_line.h"
+# include "./get_next_line.h"
+# include "./printf.h"
+
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
@@ -38,7 +39,7 @@ int		ft_isprint(int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_atoi(const char *nptr);
-int		ft_lstsize(t_list *lst);
+int		ft_lst_size(t_list *lst);
 
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -74,7 +75,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 t_list	*ft_lstnew(void *content);
-t_list	*ft_lstlast(t_list *lst);
+t_list	*ft_lst_last(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

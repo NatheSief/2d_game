@@ -1,0 +1,15 @@
+Projet de l'ecole 42 : so_long
+
+Le principe du projet est de faire un jeu en 2d en utilisant la librairie MinilibX
+
+Cette librairie graphique permet d'ouvrir des fenetres, ainsi que d'y afficher du contenu.
+Les inputs de l'utilisateur peuvent etre ecoutes pour realiser des actions en fonction.
+
+Mon objectif est de coder un jeu dans le style de Teraria (en plus simple) avec la MinilibX, en C et a la norme 42.
+
+Pour se faire j'ai realise dans un premier temps un jeu 2D pour faire valider mon projet, mais aussi pour prendre en main la MinilibX, gerer le parsing d'une map, ...
+
+Maintenant il me faut developper quelques fonctionnalites en plus :
+	- Une generation procedurale de map, avec des biomes, generer des donjons, 
+	- Permettre plus d'actions au joueur
+	- 

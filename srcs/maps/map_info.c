@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 14:36:34 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/10 10:25:35 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:01:20 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,22 @@ void	init_map_info(t_count *map_info)
 
 // Check si je n'ai qu'une sortie et player + si je n'ai que des elements
 // connus dans la map
-void	check_map_info(t_count *map_info, char **map, int lines, int culumns)
+void	check_map_info(t_map *map)
 {
 	int	elems;
 
 	elems = 0;
-	if (map_info->exit != 1)
+	
+	if (map->info->exit != 1)
 	{
-		free(map_info);
-		ft_error("La map doit avoir une seule sortie", map);
+		if (map->info->exit == 0)
+			ft_error("La map doit avoir une sortie", map);
+		else if (map->info->exit > 1)
+			ft_error("La map doit avoir une seule sortie", map);
 	}
-	if (map_info->player != 1)
-	{
-		free(map_info);
+	else if (map->info->player != 1)
 		ft_error("La map doit avoir un seul joueur", map);
-	}
-	elems = map_info->collectibles + map_info->ground + map_info->wall + 2;
-	if (elems != lines * culumns)
-	{
-		free(map_info);
+	elems = map->info->collectibles + map->info->ground + map->info->wall + 2;
+	if (elems != ((map->dimensions->width) * (map->dimensions->lenght)))
 		ft_error("La map ne doit contenir que des elements connus", map);
-	}
 }
