@@ -28,6 +28,7 @@ C_FILE		=	main.c					\
 				maps/path.c				\
 				parsing/check_parsing.c	\
 				error.c					\
+				error2.c					\
 				utils.c					\
 
 SRC_DIR		=	./srcs/

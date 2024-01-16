@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:11:44 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/12 10:03:49 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:33:31 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,23 @@ t_map	*init_map(void)
 {
 	t_map	*map;
 	
-	map = ft_calloc(sizeof(t_map), 1);
+	map = malloc(sizeof(t_map));
+	if (!map)
+		ft_error_print("Probleme dans l'allocation de ma map");
 	map->name = NULL;
 	map->map = NULL;
-	map->dimensions = ft_calloc(sizeof(t_dimesions), 1);
-	map->player = ft_calloc(sizeof(t_point), 1); 
-	map->exit = ft_calloc(sizeof(t_point), 1); 
-	map->info = ft_calloc(sizeof(t_count), 1); 
+	map->dimensions = malloc(sizeof(t_dimesions));
+	if (!map->dimensions)
+		ft_error("Probleme dans l'allocation de mes dims de la map", map);
+	map->player = malloc(sizeof(t_point)); 
+	if (!map->player)
+		ft_error("Probleme dans l'allocation de mon joueur dans la map", map);
+	map->exit = malloc(sizeof(t_point));
+	if (!map->exit)
+		ft_error("Probleme dans l'allocation de ma sortie dans la map", map);
+	map->info = malloc(sizeof(t_count)); 
+	if (!map->info)
+		ft_error("Probleme dams l'allocation de mes infos dans la map", map);
 	return (map);
 }
 
@@ -82,13 +92,22 @@ t_mlx	*init_mlx(void)
 {
 	t_mlx	*mlx;
 	
-	mlx = ft_calloc(sizeof(t_mlx), 1);
-	mlx->count_mouvement = 0;
+	mlx = malloc(sizeof(t_mlx));
+	if (!mlx)
+		ft_error_print("Probleme a l'allocation de mlx");
 	mlx->win = NULL;
 	mlx->img = NULL;
 	mlx->mlx = NULL;
+	mlx->count_mouvement = 0;
 	mlx->left_items = 0;
-	mlx->player = ft_calloc(sizeof(t_point), 1);
-	mlx->map = ft_calloc(sizeof(t_texture), 1);
+	mlx->left_items = 0;
+	mlx->count_mouvement = 0;
+	mlx->map = malloc(sizeof(t_texture));
+	mlx->player = malloc(sizeof(t_point));
+	if (!mlx->player)
+		ft_error_mlx("Probleme dans l'allocation du joueur de MLX", mlx);
+	if (!mlx->map)
+		ft_error_mlx("Probleme dans l'allocation de la map de MLX", mlx);
+	mlx->jeu = init_map();	
 	return (mlx);
 }

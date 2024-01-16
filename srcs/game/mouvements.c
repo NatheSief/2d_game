@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:54:19 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/16 11:46:00 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 16:25:30 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void moveUp(t_mlx *mlx, int x, int y)
 		
 		}
 	}
+	mlx->count_mouvement++;
 	mlx->jeu->player->x = x;
 	mlx->jeu->player->y = y;
 }
@@ -66,6 +67,7 @@ void moveLeft(t_mlx *mlx, int x, int y)
 		
 		}
 	}
+	mlx->count_mouvement++;
 	mlx->jeu->player->x = x;
 	mlx->jeu->player->y = y;
 }
@@ -94,6 +96,7 @@ void moveDown(t_mlx *mlx, int x, int y)
 			mlx->jeu->map[x][y] = 'P';
 		}
 	}
+	mlx->count_mouvement++;
 	mlx->jeu->player->x = x;
 	mlx->jeu->player->y = y;
 }
@@ -121,7 +124,8 @@ void moveRight(t_mlx *mlx, int x, int y)
 		(y)++;
 		mlx->jeu->map[x][y] = 'P';
 		}
-	}
+	}	
+	mlx->count_mouvement++;
 	mlx->jeu->player->x = x;
 	mlx->jeu->player->y = y;
 }

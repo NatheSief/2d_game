@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:08:32 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/16 11:47:04 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:39:19 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void	ft_error(char *str, t_map *map)
 {
 	ft_printf("%s\n", str);
-	free(map);
+	ft_free_map(map);
 	exit (1);
 }
 
 void	ft_error_print(char *str)
 {
+	printf("error simple");
 	ft_printf("%s\n", str);
 	exit (1);
 }
@@ -36,29 +37,25 @@ void libere(char **elem)
 	free(dup);
 }
 
-void ft_end_game(t_mlx *mlx)
-{
-	printf("LE JEU S'ARRETTE SALOPES");
-	int	i;
-	int j;
-
-	i = 0;
-	while (i <= mlx->jeu->dimensions->width)
-	{
-		j = 0;
-		while (j <= mlx->jeu->dimensions->lenght)
-		{
-			mlx_destroy_image(mlx->mlx, mlx->map);
-			j++;
-		}
-		i++;
-	}
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	free(mlx);
-}
-
 void	ft_error_mlx(char *str, t_mlx *mlx)
 {
+	printf("Error MLX");
 	ft_printf("%s\n", str);
-	free (mlx);
+	ft_free_mlx(mlx);
+	exit (0);
+}
+
+void ft_end_game(t_mlx *mlx)
+{
+	if (mlx->map->t_wall != NULL)
+		mlx_destroy_image(mlx, mlx->map->t_wall);
+	if (mlx->map->t_ground != NULL)
+		mlx_destroy_image(mlx, mlx->map->t_ground);
+	if (mlx->map->t_collectible != NULL)
+		mlx_destroy_image(mlx, mlx->map->t_collectible);
+	if (mlx->map->t_exit != NULL)
+		mlx_destroy_image(mlx, mlx->map->t_exit);
+	if (mlx->map->t_player != NULL)
+		mlx_destroy_image(mlx, mlx->map->t_player);
+	ft_error_mlx("", mlx);
 }

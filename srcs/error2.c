@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/07 15:06:12 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/16 17:27:36 by nsiefert         ###   ########.fr       */
+/*   Created: 2024/01/16 17:36:22 by nsiefert          #+#    #+#             */
+/*   Updated: 2024/01/16 17:41:26 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	main(int ac, char **av)
+// Free all the elements of my map struct
+void	ft_free_map(t_map *map)
 {
-	t_mlx	*(mlx) ;
-	t_map	*(map) ;
-
-	map = init_map();
-	mlx = init_mlx();
-	if (ac < 2)
-		ft_error_print("Il faut entrer une map pour la jouer.");
-	else if (ac > 2)
-		ft_error_print("Il ne faut pas entrer plus d'une map.");
-	else
-	{
-		check_map(av[1], map);
-		mlx->jeu = map;
-		launch_game(mlx);
-	}
-	free(mlx);
+	free(map->dimensions);
+	free(map->player);
+	free(map->exit);
+	free(map->info);
+	free(map);
 }
+
+// Free all the elements of my mlx struct
+void	ft_free_mlx(t_mlx *mlx)
+{
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_display(mlx->mlx);
+	free (mlx->player);
+	free (mlx->map);
+	ft_free_map(mlx->jeu);
+	free (mlx);
+}
+

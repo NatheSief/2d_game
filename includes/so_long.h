@@ -65,7 +65,7 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			*count_mouvement;
+	int			count_mouvement;
 	int			left_items;
 	t_point		*player;
 	t_texture	*map;
@@ -80,6 +80,8 @@ void 	ft_error_print(char *str);
 void	ft_error(char *str, t_map *map);
 void	ft_error_mlx(char *str, t_mlx *mlx);
 void 	ft_end_game(t_mlx *mlx);
+void	ft_free_mlx(t_mlx *mlx);
+void	ft_free_map(t_map *map);
 // -- Parsing --
 void	check_parse(t_map *map);
 void	check_map(char *str, t_map *map);
