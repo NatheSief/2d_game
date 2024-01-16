@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:08:32 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/11 16:15:22 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:47:04 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,31 @@ void libere(char **elem)
 		i++;
 	}
 	free(dup);
+}
+
+void ft_end_game(t_mlx *mlx)
+{
+	printf("LE JEU S'ARRETTE SALOPES");
+	int	i;
+	int j;
+
+	i = 0;
+	while (i <= mlx->jeu->dimensions->width)
+	{
+		j = 0;
+		while (j <= mlx->jeu->dimensions->lenght)
+		{
+			mlx_destroy_image(mlx->mlx, mlx->map);
+			j++;
+		}
+		i++;
+	}
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	free(mlx);
+}
+
+void	ft_error_mlx(char *str, t_mlx *mlx)
+{
+	ft_printf("%s\n", str);
+	free (mlx);
 }

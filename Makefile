@@ -21,13 +21,14 @@ MLX_LIB		=	$(addprefix $(MLX_PATH), $(MLX_FILE))
 MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
 C_FILE		=	main.c					\
+				game/mouvements.c		\
 				game/launch_game.c		\
 				maps/map_info.c			\
 				maps/map.c				\
 				maps/path.c				\
 				parsing/check_parsing.c	\
-				error.c			\
-				utils.c			\
+				error.c					\
+				utils.c					\
 
 SRC_DIR		=	./srcs/
 

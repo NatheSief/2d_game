@@ -4,6 +4,8 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+#include <X11/X.h>
+#include <X11/keysym.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/include/libft.h"
 # include "../libft/include/ft_printf.h"
@@ -13,6 +15,8 @@
 # define GROUND_PATH "./textures/ground.xpm"
 # define PLAYER_PATH "./textures/player.xpm"
 # define EXIT_PATH "./textures/door.xpm"
+
+# define RES 64
 
 typedef struct s_texture
 {
@@ -74,6 +78,8 @@ t_mlx	*init_mlx(void);
 // -- Error --
 void 	ft_error_print(char *str);
 void	ft_error(char *str, t_map *map);
+void	ft_error_mlx(char *str, t_mlx *mlx);
+void 	ft_end_game(t_mlx *mlx);
 // -- Parsing --
 void	check_parse(t_map *map);
 void	check_map(char *str, t_map *map);

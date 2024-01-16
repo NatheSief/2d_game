@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:15:20 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/15 17:02:37 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 10:08:53 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 // Permet d'avoir les dimesions de ma map, est de verifier que j'ai bien 
 // un rectangle
-#include "../../includes/so_long.h"
-
 void	check_dimensions(t_map *map, int fd)
 {
 	char	*line;
@@ -34,7 +32,7 @@ void	check_dimensions(t_map *map, int fd)
 		if (!line)
 			break ;
 		comp = ft_strlen(line) - 1;
-		if (comp != lenght && comp == 0)
+		if (comp != lenght)
 		{
 			close (fd);
 			free(line);

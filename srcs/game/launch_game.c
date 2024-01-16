@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:12:54 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/15 17:51:22 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:36:47 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,30 @@ void	charge_map(t_mlx *mlx)
 	}
 }
 
-
+// Permet de faire une action en fonction de la touche pressee
+int	hook_repartor(int keycode, t_mlx *mlx)
+{
+	printf("Collectibles a recuperer : %d\n", mlx->left_items);
+	if (keycode == 119) // W
+		moveUp(mlx, mlx->jeu->player->x, mlx->jeu->player->y);
+	if (keycode == 97) // A
+		moveLeft(mlx, mlx->jeu->player->x, mlx->jeu->player->y);
+	if (keycode == 115) // S
+		moveDown(mlx, mlx->jeu->player->x, mlx->jeu->player->y);
+	if (keycode == 100) // D
+		moveRight(mlx, mlx->jeu->player->x, mlx->jeu->player->y);
+	if (keycode == 65307|| keycode == 17) // Echap || croix rouge
+		ft_end_game(mlx);
+	if (mlx->jeu->player == mlx->jeu->exit)
+		{
+			if (mlx->left_items == 0)
+				ft_end_game(mlx);
+		}
+	charge_map(mlx);
+	mlx->count_mouvement++;
+	ft_printf("Compteur de mouvement : %d\n", mlx->count_mouvement);
+	return (1);
+}
 
 // Lance le lancement du jeu, l'ouverture de ma fenetre, la generation des 
 // sprites de la map de base, puis fait une boucle qui gere toutes les actions
@@ -69,7 +92,6 @@ void	launch_game(t_mlx *mlx)
 	mlx->count_mouvement = 0;
 	mlx->left_items = mlx->jeu->info->collectibles;
 	mlx->player = mlx->jeu->player;
-	
-	// mlx_hook(mlx->win, key_hook, mlx);
+	mlx_hook(mlx->win, KeyPress, KeyPressMask, &hook_repartor, mlx);
 	mlx_loop(mlx->mlx);
 }
