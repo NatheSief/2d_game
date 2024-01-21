@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 19:00:14 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 19:07:26 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/18 12:52:45 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void	evolve_display(t_game *game)
 {
-	mlx_put_image_to_window(MLX, WIND, T_PLAYER, PLAYER_P->x * RES,
-		PLAYER_P->y * RES);
+	mlx_put_image_to_window(MLX, WIND, T_PLAYER, PLAYER_P->y * RES,
+		PLAYER_P->x * RES);
 	if (INFO->last_movement == 1)
 	{
-		mlx_put_image_to_window(MLX, WIND, T_PLAYER, (PLAYER_P->x + 1) * RES,
-		PLAYER_P->y * RES);
+		mlx_put_image_to_window(MLX, WIND, T_GROUND, PLAYER_P->y* RES,
+		(PLAYER_P->x + 1) * RES);
 	}
 	else if (INFO->last_movement == 2)
 	{
-		mlx_put_image_to_window(MLX, WIND, T_PLAYER, PLAYER_P->x * RES,
-		(PLAYER_P->y + 1) * RES);
+		mlx_put_image_to_window(MLX, WIND, T_GROUND, (PLAYER_P->y + 1) * RES,
+		PLAYER_P->x * RES);
 	}
 	else if (INFO->last_movement == 3)
 	{
-		mlx_put_image_to_window(MLX, WIND, T_PLAYER, (PLAYER_P->x - 1) * RES,
-		PLAYER_P->y * RES);
+		mlx_put_image_to_window(MLX, WIND, T_GROUND,  PLAYER_P->y * RES,
+		(PLAYER_P->x - 1)* RES);
 	}
 	else if (INFO->last_movement == 4)
 	{
-		mlx_put_image_to_window(MLX, WIND, T_PLAYER, PLAYER_P->x * RES,
-		(PLAYER_P->y - 1) * RES);
+		mlx_put_image_to_window(MLX, WIND, T_GROUND, (PLAYER_P->y - 1) * RES,
+		PLAYER_P->x * RES);
 	}
 }

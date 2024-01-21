@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:11:44 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/16 17:33:31 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:14:38 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ void	ft_strcpy(char *dest, char *src, int size)
 t_map	*init_map(void)
 {
 	t_map	*map;
-	
+
 	map = malloc(sizeof(t_map));
 	if (!map)
 		ft_error_print("Probleme dans l'allocation de ma map");
-	map->name = NULL;
-	map->map = NULL;
-	map->dimensions = malloc(sizeof(t_dimesions));
+	map->dimensions = (t_dimensions *)malloc(sizeof(t_dimensions));
 	if (!map->dimensions)
 		ft_error("Probleme dans l'allocation de mes dims de la map", map);
 	map->player = malloc(sizeof(t_point)); 
@@ -91,7 +89,7 @@ t_map	*init_map(void)
 t_mlx	*init_mlx(void)
 {
 	t_mlx	*mlx;
-	
+
 	mlx = malloc(sizeof(t_mlx));
 	if (!mlx)
 		ft_error_print("Probleme a l'allocation de mlx");
@@ -103,9 +101,6 @@ t_mlx	*init_mlx(void)
 	mlx->left_items = 0;
 	mlx->count_mouvement = 0;
 	mlx->map = malloc(sizeof(t_texture));
-	mlx->player = malloc(sizeof(t_point));
-	if (!mlx->player)
-		ft_error_mlx("Probleme dans l'allocation du joueur de MLX", mlx);
 	if (!mlx->map)
 		ft_error_mlx("Probleme dans l'allocation de la map de MLX", mlx);
 	mlx->jeu = init_map();	

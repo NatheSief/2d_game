@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 18:16:49 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 18:25:21 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:03:22 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,48 @@ void	check_open(t_game *game)
 	close(fd3);
 	close(fd4);
 	close(fd5);
+}
+
+void	free_lines(char **str, int i)
+{
+	int	j;
+
+	j = -1;
+	while (++j <= i)
+		free(str[i]);
+}
+
+void cpy_map(char **original, t_game *game, t_game *cpy)
+{
+	int		i;
+
+	cpy->map->map = malloc(sizeof(char *) * WIDTH);
+	if (!cpy->map->map)
+	{
+		free(cpy->map->map);
+		return;
+	}
+	i = -1;
+	while (++i < WIDTH)
+	{
+		cpy->map->map[i] = malloc (sizeof(char) * LENGHT);
+		if (!cpy->map->map[i])
+		{
+			free_lines(cpy->map->map, i);
+			return;
+		}
+		cpy->map->map[i] = ft_strdup(original[i]);
+	}
+}
+
+t_game	*copy_info(t_game *original)
+{
+	t_game	*game;
+
+	game = init_game();
+	cpy_map(original->map->map, original, game);
+	INFO->count = cpy_info();
+	if (!MAPS->map || !INFO->count)
+		ft_error_free("Problem occuring when copping the map ! \n", game);
+	return (game);
 }

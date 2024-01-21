@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:01:58 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 19:28:26 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:07:23 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 # define C_WALL				game->info->count->count_wall
 
 //		SHORT PATHS
-# define INFO				game->info
 # define MAPS				game->map
+# define INFO				game->info
 # define PLAYER_P			game->info->player_pos
 
 //		MLX SHORTCUTS
@@ -107,20 +107,14 @@ typedef	struct s_mlx
 
 typedef struct s_info
 {
-	int		movement_count;
 	int		coll_left;
 	int		last_movement;
 	int		lenght;
+	int		movement_count;
 	int		width;
 	t_count	*count;
 	t_point	*player_pos;
 } t_info;
-
-typedef struct s_garbage
-{
-	void				*content;
-	struct s_garbage	*next;
-} t_garbage;
 
 // STRUCTURE GENERALE
 typedef struct s_game
@@ -128,7 +122,6 @@ typedef struct s_game
 	t_mlx		*mlx;
 	t_map		*map;
 	t_info		*info;
-	t_garbage	collector;
 } t_game;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 15:06:12 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/16 17:27:36 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:20:29 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	t_mlx	*(mlx) ;
-	t_map	*(map) ;
+	t_mlx	*mlx;
+	t_map	*map;
 
 	map = init_map();
 	mlx = init_mlx();

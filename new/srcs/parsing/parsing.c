@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:19:56 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 19:37:09 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:12:10 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	check_top_bottom(t_game *game)
 	{
 		if (MAPS->map[0][i] != 'W' || MAPS->map[WIDTH - 1][i] != 'W')
 		{
-			printf("%d -- %d\n", i, WIDTH);
 			ft_error_free("There is a missing wall in the outline top!", game);
 		}
 		i++;
@@ -85,7 +84,6 @@ void	check_parsing(t_game *game)
 {
 	check_top_bottom(game);
 	check_sides(game);
-	init_elems(game);
 	alloc_elems(game);
 	check_elems(game);
 	check_path(game);

@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 17:42:44 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 19:32:02 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:42:34 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	charge_textures(t_game *game)
 
 	width = RES;
 	length = RES;
-	check_open(game);
+	// check_open(game);
 	T_COLLECTIBLE = mlx_xpm_file_to_image(MLX, COLLECTIBLE_PATH, &width, &length);
 	T_EXIT = mlx_xpm_file_to_image(MLX, EXIT_PATH, &width, &length);
 	T_GROUND = mlx_xpm_file_to_image(MLX, GROUND_PATH, &width, &length);
@@ -27,18 +27,32 @@ static void	charge_textures(t_game *game)
 	T_WALL = mlx_xpm_file_to_image(MLX, WALL_PATH, &width, &length);
 }
 
+void	affiche(t_mlx *mlx, t_text *texture, int i, int j)
+{
+	mlx_put_image_to_window(mlx->mlx, mlx->win, texture, j * 64, i * 64);
+}
+
 static void affiche_map(t_game *game)
 {
-	int	i;
-	int	j;
-
+	int	i ;
+	int	j ;
+	
 	i = -1;
 	while (++i < WIDTH)
 	{
 		j = -1;
 		while (++j < LENGHT)
 		{
-			put_to_window(game, i, j);
+			if (MAPS->map[i][j] == 'W')
+				affiche(game->mlx, T_WALL, i, j);
+			else if (MAPS->map[i][j] == 'G')
+				affiche(game->mlx, T_GROUND, i, j);
+			else if (MAPS->map[i][j] == 'C')
+				affiche(game->mlx, T_COLLECTIBLE, i, j);
+			else if (MAPS->map[i][j] == 'E')
+				affiche(game->mlx, T_EXIT, i, j);
+			else if (MAPS->map[i][j] == 'P')
+				affiche(game->mlx, T_PLAYER, i, j);
 		}
 	}
 }
@@ -46,23 +60,21 @@ static void affiche_map(t_game *game)
 // Permet de faire une action en fonction de la touche pressee
 int	hook_repartor(int keycode, t_game *game)
 {
-	printf("Collectibles a recuperer : %d\n", INFO->coll_left);
-	if (keycode == 119 || keycode == 97 || keycode == 115 || keycode == 100 
-		|| keycode == 65307 || keycode == 17)
+	if ((keycode == 'w' || keycode == 'a' || keycode == 's' || keycode == 'd' 
+		|| keycode == 65307)) 
 	{
-		
-		if (keycode == 119) // W
+		ft_printf("\rCompteur de mouvement : %d\n", INFO->movement_count);
+		if (keycode == 'w') // W
 			moveUp(game, PLAYER_P->x, PLAYER_P->y);
-		else if (keycode == 97) // A
+		else if (keycode == 'a') // A
 			moveLeft(game, PLAYER_P->x, PLAYER_P->y);
-		else if (keycode == 115) // S
+		else if (keycode == 's') // S
 			moveDown(game, PLAYER_P->x, PLAYER_P->y);
-		else if (keycode == 100) // D
+		else if (keycode == 'd') // D
 			moveRight(game, PLAYER_P->x, PLAYER_P->y);
 		else if (keycode == 65307) // Echap
-			ft_error_free("Manal stop of the game :/ you're so bad ... !", game);
+			ft_error_free("Manual stop of the game :/ you're so bad ... !", game);
 		evolve_display(game);
-		ft_printf("Compteur de mouvement : %d\n", INFO->movement_count);
 	}
 	return (1);
 }
@@ -70,10 +82,16 @@ int	hook_repartor(int keycode, t_game *game)
 void	launch_game(t_game *game)
 {
 	MLX = mlx_init();
-	WIND = mlx_new_window(MLX, WIDTH * RES, LENGHT * RES, MAPS->name);
+	if (!MLX)
+		ft_error_free("Probleme when allocating MLX pointer ! \n", game);
+	WIND = mlx_new_window(MLX, LENGHT * RES, WIDTH * RES, MAPS->name);
+	if (!WIND)
+		ft_error_free("Probleme when allocating Win pointer ! \n", game);
 	charge_textures(game);
 	affiche_map(game);
-	mlx_hook(WIND, KeyPress, KeyPressMask, &hook_repartor, MLX);
+	INFO->coll_left = C_COLLECTIBLE;
+	INFO->movement_count = 0;
+	mlx_hook(WIND, KeyPress, KeyPressMask, &hook_repartor, game);
 	// mlx_mouse_hook();
 	mlx_loop(MLX);
 }

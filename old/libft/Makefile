@@ -6,13 +6,13 @@
 #    By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by nsiefert          #+#    #+#              #
-#    Updated: 2024/01/13 18:59:56 by nsiefert         ###   ########.fr        #
+#    Updated: 2024/01/21 08:55:58 by nsiefert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 
-CC			=	cc
+CC			=	@cc
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders
@@ -23,7 +23,7 @@ GNL 		=	gnl/
 
 OBJ_DIR		=	obj/
 
-RM			=	rm -f
+RM			=	@rm -f
 
 #Colors
 DEF_COLOR = \033[0;39m
@@ -69,7 +69,7 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_putchar_fd.c			\
 			ft_putstr_fd.c 			\
 			ft_putendl_fd.c 		\
-			ft_putnbr_fd.c
+			ft_putnbr_fd.c			\
 
 LIBFTSRCB =	ft_lstnew.c 			\
 			ft_lstadd_front.c 		\
@@ -107,8 +107,8 @@ OBJF		=	.cache_exists
 all: $(NAME)
 
 $(NAME): $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
-	ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
+	@ranlib $(NAME)
 	@echo "$(MAGENTA)     /\__\      ___        /\  \         /\  \         /\  \     $(DEF_COLOR)"
 	@echo "$(MAGENTA)    /:/  /     /\  \      /::\  \       /::\  \        \:\  \    $(DEF_COLOR)"
 	@echo "$(MAGENTA)   /:/  /      \:\  \    /:/\:\  \     /:/\:\  \        \:\  \   $(DEF_COLOR)"
@@ -131,7 +131,7 @@ $(OBJ_DIR)%.o: $(GNL)%.c $(OBJF)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 $(OBJF):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 clean:
 	$(RM) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)

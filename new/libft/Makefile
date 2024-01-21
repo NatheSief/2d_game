@@ -6,13 +6,13 @@
 #    By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by nsiefert          #+#    #+#              #
-#    Updated: 2024/01/13 18:59:56 by nsiefert         ###   ########.fr        #
+#    Updated: 2024/01/19 14:45:51 by nsiefert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 
-CC			=	cc
+CC			=	@cc
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders

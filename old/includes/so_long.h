@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/20 13:05:39 by nsiefert          #+#    #+#             */
+/*   Updated: 2024/01/21 18:43:41 by nsiefert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SLONG_H
 # define SLONG_H
 
@@ -31,7 +43,7 @@ typedef struct s_dimensions
 {
 	int		lenght;
 	int		width;
-} t_dimesions;
+} t_dimensions;
 
 typedef struct s_point
 {
@@ -52,12 +64,12 @@ typedef struct s_count
 // Structure globale de la map
 typedef struct s_map
 {
-	char		*name;
-	char 		**map;
-	t_dimesions	*dimensions;
-	t_point		*player;
-	t_point		*exit;
-	t_count		*info;
+	char			*name;
+	char 			**map;
+	t_dimensions	*dimensions;
+	t_point			*player;
+	t_point			*exit;
+	t_count			*info;
 } t_map;
 
 typedef struct s_mlx
@@ -67,7 +79,7 @@ typedef struct s_mlx
 	void		*img;
 	int			count_mouvement;
 	int			left_items;
-	t_point		*player;
+	int			last_movement;
 	t_texture	*map;
 	t_map		*jeu;
 } t_mlx;
@@ -81,7 +93,9 @@ void	ft_error(char *str, t_map *map);
 void	ft_error_mlx(char *str, t_mlx *mlx);
 void 	ft_end_game(t_mlx *mlx);
 void	ft_free_mlx(t_mlx *mlx);
+void	ft_free_text(t_texture *map);
 void	ft_free_map(t_map *map);
+
 // -- Parsing --
 void	check_parse(t_map *map);
 void	check_map(char *str, t_map *map);
@@ -93,10 +107,15 @@ void	init_map_info(t_count *map_info);
 void	check_map_info(t_map *map);
 void 	libere(char **elem);
 
+// -- Utils--
+void	remake(t_map *map);
+void 	put_to_up(t_map *game);
+
 // -- Mouvements --
-void moveUp(t_mlx *mlx, int x, int y);
-void moveLeft(t_mlx *mlx, int x, int y);
-void moveDown(t_mlx *mlx, int x, int y);
-void moveRight(t_mlx *mlx, int x, int y);
+void	evolve_display(t_mlx *mlx, int x, int y);
+void 	moveUp(t_mlx *mlx, int x, int y);
+void 	moveLeft(t_mlx *mlx, int x, int y);
+void 	moveDown(t_mlx *mlx, int x, int y);
+void 	moveRight(t_mlx *mlx, int x, int y);
 
 #endif

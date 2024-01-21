@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 14:34:49 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 19:34:58 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/19 16:29:58 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ static void	map_alloc(t_game *game, int fd)
 	while (i < WIDTH)
 	{
 		MAPS->map[i] = malloc(sizeof(char) * LENGHT);
+		if (!MAPS->map[i])
+			ft_error_free("Problem during map allocation ! \n", game);
 		MAPS->map[i] = ft_strdup(get_next_line(fd));
 		i++;
+	}
+	if (i < WIDTH - 1)
+	{
+		close (fd);
+		ft_error_free("J'en peux plus sa mere \n", game);
 	}
 }
 
@@ -65,20 +72,41 @@ int		check_extension(char *str, char *ext)
 	return (0);
 }
 
+void	get_position_player(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < WIDTH)
+	{
+		j = -1;
+		while (++j < LENGHT)
+		{
+			if (MAPS->map[i][j] == 'P')
+			{
+				PLAYER_P->x = i;
+				PLAYER_P->y = j;
+			}
+		}
+	}
+}
+
 void	generate_map(char *str, t_game *game)
 {
 	int		fd;
 
+	if (!check_extension(str, ".ber"))
+		ft_error_free("File isn't a .ber !", game);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		ft_error_free("File can't be opened !", game);
-	if (!check_extension(str, ".ber"))
-		ft_error_free("File isn't a .ber !", game);
 	get_dimesions(fd, game);
 	close(fd);
 	fd = open(str, O_RDONLY);
 	init_map(game, str);
 	map_alloc(game, fd);
 	close(fd);
+	get_position_player(game);
 	check_parsing(game);
 }

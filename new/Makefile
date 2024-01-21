@@ -1,6 +1,6 @@
 NAME		=	so_long
 CC			=	cc
-FLAG		=	-Wall -Wextra -Werror
+FLAG		=	-Wall -Wextra -g3
 LIBFT_PATH	=	./libft/
 LIBFT_FILE	=	libft.a
 MLX_FILE	=	libmlx.a
@@ -12,9 +12,11 @@ MLX_EX		=	$(MLX_LIB) $(MLX_FLAG)
 
 C_FILE		=	main.c					\
 				core/errors_display.c	\
-				core/garbage.c			\
+				core/free.c				\
 				core/inits.c			\
+				core/inits2.c			\
 				core/utils.c			\
+				core/utils2.c			\
 				maps/generate_map.c		\
 				parsing/parsing.c		\
 				parsing/path.c			\

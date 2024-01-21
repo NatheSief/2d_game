@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 09:20:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/17 12:16:09 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:05:53 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void	ft_error(char *str)
 void	ft_error_free(char *str, t_game *game)
 {
 	ft_printf("%s\n", str);
-	empty_the_bin(game);
+	free_game(game);
 	exit(1);
 }
 
 void	end_game(t_game *game)
 {
 	ft_printf("GG BG\n");
-	empty_the_bin(game);
+	free_game(game);
+	exit(0);
 }
