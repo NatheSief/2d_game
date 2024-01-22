@@ -6,13 +6,13 @@
 #    By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by nsiefert          #+#    #+#              #
-#    Updated: 2024/01/13 18:59:56 by nsiefert         ###   ########.fr        #
+#    Updated: 2024/01/22 11:00:11 by nsiefert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libft.a
 
-CC			=	cc
+CC			=	@cc
 CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #Folders
@@ -23,7 +23,7 @@ GNL 		=	gnl/
 
 OBJ_DIR		=	obj/
 
-RM			=	rm -f
+RM			=	@rm -f
 
 #Colors
 DEF_COLOR = \033[0;39m
@@ -69,7 +69,7 @@ LIBFTSRC = 	ft_atoi.c	 			\
 			ft_putchar_fd.c			\
 			ft_putstr_fd.c 			\
 			ft_putendl_fd.c 		\
-			ft_putnbr_fd.c
+			ft_putnbr_fd.c			\
 
 LIBFTSRCB =	ft_lstnew.c 			\
 			ft_lstadd_front.c 		\
@@ -104,23 +104,34 @@ OBJ_GNL		= 	$(addprefix $(OBJ_DIR), $(GNLSRC:.c=.o))
 
 OBJF		=	.cache_exists
 
-all: $(NAME)
+all: print_lib $(NAME)
+
+print_lib :
+	@echo "$(MAGENTA)     /\__\      ___        /\  \         /\  \         /\  \     	$(RED)A	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)    /:/  /     /\  \      /::\  \       /::\  \        \:\  \    	$(RED)M	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)   /:/  /      \:\  \    /:/\:\  \     /:/\:\  \        \:\  \   	$(RED)E	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)  /:/  /       /::\__\  /::\_\:\__\   /::\_\:\  \       /::\  \  	$(RED)L	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA) /:/__/     __/:/\/__/ /:/\:\ \:|__| /:/\:\ \:\__\     /:/\:\__\ 	$(RED)I	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA) \:\  \    /\/:/  /    \:\_\:\/:/  / \/__\:\ \/__/    /:/  \/__/ 	$(RED)O	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)  \:\  \   \::/__/      \:\ \::/  /       \:\__\     /:/  /      	$(RED)R	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)   \:\  \   \:\__\       \:\/:/  /         \/__/     \/__/       	$(RED)E	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)    \:\__\   \/__/        \::/__/                                	$(RED)E	$(DEF_COLOR)"
+	@sleep 0.1
+	@echo "$(MAGENTA)     \/__/                 _                            		  		$(DEF_COLOR)"
+	@sleep 0.1
 
 $(NAME): $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
-	ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
-	ranlib $(NAME)
-	@echo "$(MAGENTA)     /\__\      ___        /\  \         /\  \         /\  \     $(DEF_COLOR)"
-	@echo "$(MAGENTA)    /:/  /     /\  \      /::\  \       /::\  \        \:\  \    $(DEF_COLOR)"
-	@echo "$(MAGENTA)   /:/  /      \:\  \    /:/\:\  \     /:/\:\  \        \:\  \   $(DEF_COLOR)"
-	@echo "$(MAGENTA)  /:/  /       /::\__\  /::\_\:\__\   /::\_\:\  \       /::\  \  $(DEF_COLOR)"
-	@echo "$(MAGENTA) /:/__/     __/:/\/__/ /:/\:\ \:|__| /:/\:\ \:\__\     /:/\:\__\ $(DEF_COLOR)"
-	@echo "$(MAGENTA) \:\  \    /\/:/  /    \:\_\:\/:/  / \/__\:\ \/__/    /:/  \/__/ $(DEF_COLOR)"
-	@echo "$(MAGENTA)  \:\  \   \::/__/      \:\ \::/  /       \:\__\     /:/  /      $(DEF_COLOR)"
-	@echo "$(MAGENTA)   \:\  \   \:\__\       \:\/:/  /         \/__/     \/__/       $(DEF_COLOR)"
-	@echo "$(MAGENTA)    \:\__\   \/__/        \::/__/                                $(DEF_COLOR)"
-	@echo "$(MAGENTA)     \/__/                 _                            boosted  $(DEF_COLOR)"
-
-
+	@ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
+	@ranlib $(NAME)
+	
 $(OBJ_DIR)%.o: $(LIBFT)%.c $(OBJF)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
@@ -131,7 +142,7 @@ $(OBJ_DIR)%.o: $(GNL)%.c $(OBJF)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 $(OBJF):
-	mkdir -p $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 
 clean:
 	$(RM) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
@@ -141,4 +152,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re print_lib

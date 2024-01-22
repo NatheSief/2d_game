@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:15:20 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/21 13:47:54 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:25:56 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,30 @@ int		check_extension(char *str, char *ext)
 }
 
 //Permet d'allouer la map dans la structure
-static void	map_alloc(t_map *game, int fd)
+static void map_alloc(t_map *game, int fd)
 {
-	int	i;
+	int i;
+	char *line;
 
 	i = -1;
-	game->map = malloc(sizeof(char *) * game->dimensions->lenght);
+	game->map = malloc(sizeof(char *) * game->dimensions->width);
 	if (!game->map)
-		ft_error("Problem during map allocation !\n", game) ;
+		ft_error("Problem during map allocation!\n", game);
 	while (++i < game->dimensions->width)
 	{
-		(game->map[i]) = (char *)malloc(sizeof(char) * game->dimensions->lenght);
+		line = get_next_line(fd);
+		if (line == NULL)
+			ft_error("Problem reading map line!\n", game);
+	
+		game->map[i] = ft_strdup(line);
+		free(line);
 		if (!game->map[i])
-			ft_error("Problem during map allocation ! \n", game);
-		game->map[i] = ft_strdup(get_next_line(fd));
+			ft_error("Problem during map allocation!\n", game);
 	}
 	if (i < game->dimensions->width - 1)
 	{
-		close (fd);
-		ft_error("J'en peux plus sa mere \n", game);
+		close(fd);
+		ft_error("J'en peux plus sa mere\n", game);
 	}
 }
 

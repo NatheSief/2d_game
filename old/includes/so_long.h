@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 13:05:39 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/21 18:43:41 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:47:17 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,14 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
+	t_texture	*map;
+	
 	int			count_mouvement;
 	int			left_items;
 	int			last_movement;
-	t_texture	*map;
 	t_map		*jeu;
 } t_mlx;
+
 // Prototypes
 // -- Init mes structures --
 t_map	*init_map(void);
@@ -93,7 +94,7 @@ void	ft_error(char *str, t_map *map);
 void	ft_error_mlx(char *str, t_mlx *mlx);
 void 	ft_end_game(t_mlx *mlx);
 void	ft_free_mlx(t_mlx *mlx);
-void	ft_free_text(t_texture *map);
+void	ft_free_text(t_mlx *mlx);
 void	ft_free_map(t_map *map);
 
 // -- Parsing --
