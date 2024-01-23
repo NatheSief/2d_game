@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:40:33 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/22 15:00:08 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/23 08:03:17 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "./get_next_line.h"
-# include "./printf.h"
+# include "get_next_line.h"
+# include "printf.h"
+# include "perso.h"
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648

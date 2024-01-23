@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 14:55:46 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 16:17:17 by nsiefert         ###   ########.fr       */
+/*   Created: 2024/01/07 15:11:44 by nsiefert          #+#    #+#             */
+/*   Updated: 2024/01/23 15:43:24 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	main(int ac, char **av)
+void put_to_up(t_game *game)
 {
-	t_game	*game;
+	int	i;
+	int	j;
 
-	game = NULL;
-	if (ac == 1)
-		ft_error("Program should execute with a map file !");
-	if (ac > 2)
-		ft_error("Program should execute with onyly one map file !");
-	else
+	i = -1;
+	while (++i < WIDTH)
 	{
-		if (!ft_countchar(av[1], '.'))
-			ft_error("File doesn't have a valid name (multiple dots) !");
-		init_game(game, av[1]);
-		check_map(game);
-		// LAUNCH GAME
+		j = -1;
+		while (++j < LENGHT)
+		{
+			if (MAPS[i][j] >= 'a' && MAPS[i][j] <= 'z')
+				MAPS[i][j] -= 32;
+		}
 	}
-	return (0);
 }

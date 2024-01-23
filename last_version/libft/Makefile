@@ -6,7 +6,7 @@
 #    By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 20:58:55 by nsiefert          #+#    #+#              #
-#    Updated: 2024/01/22 11:00:11 by nsiefert         ###   ########.fr        #
+#    Updated: 2024/01/23 12:55:20 by nsiefert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ INCLUDE		=	include/
 LIBFT 		=	libft/
 PRINTF 		=	printf/
 GNL 		=	gnl/
+PERSO		=	perso/
 
 OBJ_DIR		=	obj/
 
@@ -85,22 +86,29 @@ PRINTFSRC = ft_print_hex.c			\
 			ft_print_ptr.c			\
 			ft_print_hex.c			\
 			ft_printf_utils.c		\
-			ft_print_unsigned.c	\
+			ft_print_unsigned.c		\
 			ft_printf.c				\
 
 GNLSRC	  = get_next_line.c			\
 			get_next_line_utils.c	\
 
+PERSOSRC  =	ft_countchar.c			\
+
+# LIBFT
 SRC_LIBFT	= 	$(addprefix $(LIBFT), $(LIBFTSRC))
 OBJ_LIBFT	= 	$(addprefix $(OBJ_DIR), $(LIBFTSRC:.c=.o))
+# LIBFT-BONUS
 SRC_LIBFTB	= 	$(addprefix $(LIBFT), $(LIBFTSRCB))
 OBJ_LIBFTB	= 	$(addprefix $(OBJ_DIR), $(LIBFTSRCB:.c=.o))
-
+# PRINTF
 SRC_PRINTF	=	$(addprefix $(PRINTF), $(PRINTFSRC))
 OBJ_PRINTF	= 	$(addprefix $(OBJ_DIR), $(PRINTFSRC:.c=.o))
-
+# GET_NEXT_LINE
 SRC_GNL		=	$(addprefix $(GNL), $(GNLSRC))
 OBJ_GNL		= 	$(addprefix $(OBJ_DIR), $(GNLSRC:.c=.o))
+# PERSONNAL FUNCTIONS
+SRC_PERSO	=	$(addprefix $(PERSO), $(PERSOSRC))
+OBJ_PERSO	= 	$(addprefix $(OBJ_DIR), $(PERSOSRC:.c=.o))
 
 OBJF		=	.cache_exists
 
@@ -128,8 +136,8 @@ print_lib :
 	@echo "$(MAGENTA)     \/__/                 _                            		  		$(DEF_COLOR)"
 	@sleep 0.1
 
-$(NAME): $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
-	@ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
+$(NAME):$(OBJ_PERSO) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL) 
+	@ar rc $(NAME) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL) $(OBJ_PERSO)
 	@ranlib $(NAME)
 	
 $(OBJ_DIR)%.o: $(LIBFT)%.c $(OBJF)
@@ -141,11 +149,14 @@ $(OBJ_DIR)%.o: $(PRINTF)%.c $(OBJF)
 $(OBJ_DIR)%.o: $(GNL)%.c $(OBJF)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
+$(OBJ_DIR)%.o: $(PERSO)%.c $(OBJF)
+	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
+
 $(OBJF):
 	@mkdir -p $(OBJ_DIR)
 
 clean:
-	$(RM) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL)
+	$(RM) $(OBJ_LIBFT) $(OBJ_LIBFTB) $(OBJ_PRINTF) $(OBJ_GNL) $(OBJ_PERSO)
 
 fclean: clean
 	$(RM) $(NAME)

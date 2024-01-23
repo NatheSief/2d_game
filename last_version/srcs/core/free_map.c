@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:06:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/22 15:37:27 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:21:27 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_free_map(t_game *game)
 	if (game->map->info)
 		free(game->map->info);
 	if (MAP)
-		libere(game);
+		libere(game->map->map);
 	if (game->map->name)
 		free(game->map->name);
 	free(game->map);

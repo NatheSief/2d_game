@@ -30,6 +30,17 @@ CYAN		=	\033[0;96m
 WHITE		=	\033[0;97m
 
 SRCS		=	main.c				 	\
+				core/free_map.c			\
+				core/free_mlx.c			\
+				core/handling_errors.c	\
+				core/init_map.c			\
+				core/init_mlx.c			\
+				core/utils.c			\
+				core/map_alloc.c		\
+				map/map.c				\
+				map/path.c				\
+				render/launch_game.c	\
+				render/mouvements.c		\
 
 SRC		 	=	$(addprefix $(SRC_DIR), $(SRCS))
 OBJ		 	=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
@@ -107,8 +118,6 @@ mlx_print:
 	@sleep 0.1
 	@echo ""
 
-
-
 .c.o:
 	$(CC) $(FLAG) -c $< -o $@
 
@@ -128,9 +137,9 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(OBJ_DIR)/parsing
-	@mkdir -p $(OBJ_DIR)/maps
-	@mkdir -p $(OBJ_DIR)/game
+	@mkdir -p $(OBJ_DIR)/core
+	@mkdir -p $(OBJ_DIR)/map
+	@mkdir -p $(OBJ_DIR)/render
 
 clean:
 	@make clean -sC $(LIBFT_PATH)
