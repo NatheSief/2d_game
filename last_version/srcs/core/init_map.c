@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:37:58 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 18:53:40 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:29:54 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ static void init_map(t_game *game, char *str)
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		ft_error_free("Can't open the map file !", game);
-	MAP->info = malloc(sizeof(t_count));
-	ft_memset(MAP->info, 0, sizeof(t_count));
+	MAP->info = malloc(sizeof(t_info));
+	ft_memset(MAP->info, 0, sizeof(t_info));
 	if (!MAP->info)
 		ft_error_free("Problen while allocating infos !", game);
 	init_info(game, str);
