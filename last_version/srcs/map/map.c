@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:15:20 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 16:08:38 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:28:11 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void	check_parse(t_game *game)
 
 	i = -1;
 	j = -1;
-	while (++j < LENGHT)
+	while (++j < LENGHT - 1)
 	{
-		if (MAPS[0][j] != 'W' || MAPS[WIDTH][j] != 'W')
+		if (MAPS[0][j] != 'W' || MAPS[WIDTH - 1][j] != 'W')
 			ft_error_free("Maps isn't surrounded by walls on top", game);
 	}
-	while (++i < WIDTH)
+	while (++i < WIDTH - 1)
 	{
-		if (MAPS[i][0] != 'W' || MAPS[i][LENGHT] != 'W')
+		if (MAPS[i][0] != 'W' || MAPS[i][LENGHT - 2] != 'W')
 			ft_error_free("Maps isn't surrounded by walls on sides", game);
 	}
 	check_map_info(game);

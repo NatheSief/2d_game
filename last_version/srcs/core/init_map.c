@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:37:58 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 19:29:54 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:32:49 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ static void	update_info(t_game *game, char *str)
 		else if(str[i] == 'W')
 			MAP->info->info->c_wall++;
 		else
-		{
-			printf("-=%c=-\n", str[i]);
 			ft_error_free("There is a unknown character on the map !", game);
-		}
 	}
 }
 
@@ -63,9 +60,9 @@ static void	get_dimensions_info(t_game *game, int fd)
 		update_info(game, line);
 		free(line);
 		line = get_next_line(fd);
+		WIDTH = ++widht;
 	}
 	free(line);
-	WIDTH = widht;
 	LENGHT = lenght - 1;
 }
 
@@ -74,13 +71,15 @@ static void	init_info(t_game *game, char *str)
 {
 	int	fd;
 
-	MAP->info->dimensions.x = 0;
-	MAP->info->dimensions.y = 0;
+	MAP->info->dimensions = NULL;
+	MAP->info->dimensions = malloc(sizeof(t_point));
+	if (!MAP->info->dimensions)
+		ft_error_free("Problem while allocating dimensions ! \n", game);
 	MAP->info->player.x = 0;
 	MAP->info->player.y = 0;
-	MAP->info->info = malloc(sizeof(t_count*));
+	MAP->info->info = ft_calloc(1, sizeof(t_count));
 	if (!MAP->info->info)
-		ft_error_free("Problem while allocating informations !", game);
+		ft_error_free("Problem while allocating informations ! \n", game);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		ft_error_free("Can't open map file !", game);
@@ -96,31 +95,35 @@ static void init_map(t_game *game, char *str)
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		ft_error_free("Can't open the map file !", game);
+	MAP->info = NULL;
 	MAP->info = malloc(sizeof(t_info));
 	ft_memset(MAP->info, 0, sizeof(t_info));
 	if (!MAP->info)
 		ft_error_free("Problen while allocating infos !", game);
 	init_info(game, str);
-	MAP->map = malloc(sizeof(char *) * (WIDTH + 1));
-	MAP->name = malloc(sizeof(char) * ft_strlen(get_name(game, str)));
-	if (!MAP->map || !MAP->name)
-		ft_error_free("Problem while allocatin map or name !", game);
+	MAP->map = NULL;
+	game->map->map = malloc(sizeof(char *) * (WIDTH + 1)); // MAP->map EXISTE ??
+	MAP->map[WIDTH] = NULL;
+	if (!MAP->map)
+		ft_error_free("Problem while allocatin map or name !\n", game); 
+	MAP->name = NULL;
 	get_name(game, str);
 	map_alloc(game, fd);
 }
 
 // Permet d'initier la strcture GAME
-void	init_game(t_game *game, char *str)
+t_game	*init_game(t_game *game, char *str)
 {
-	game = malloc(sizeof(t_game *) * 2);
+	game = malloc(sizeof(t_game));
 	if (!game)
 		ft_error("Problem while allocating structure game !");
 	game->map = NULL;
-	game->map = malloc(sizeof(t_map *));
 	game->mlx = NULL;
-	game->mlx = malloc(sizeof(t_mlx *));
+	game->map = malloc(sizeof(t_map));
+	game->mlx = malloc(sizeof(t_mlx));
 	if (!game->map || !game->mlx)
 		ft_error_free("Problem while allocating game in-structures !", game);
 	init_map(game, str);
 	init_mlx(game);
+	return (game);
 }

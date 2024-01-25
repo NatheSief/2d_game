@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 17:36:22 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/22 14:14:41 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:31:19 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_free_map(t_map *map)
 	if (map->map)
 	{
 		libere(map->map);
-	}
+	}	
 	free(map->map);
 	// if (map->map)
 	// 	printf("NULLOS !!! \n");

@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:49:35 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:57:16 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:32:35 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 
@@ -38,7 +39,7 @@ void	ft_free_mlx(t_game *game);
 // CORE - INITS
 void	map_alloc(t_game *game, int fd);
 char	*get_name(t_game *game, char *str);
-void	init_game(t_game *game, char *str);
+t_game	*init_game(t_game *game, char *str);
 void	init_mlx(t_game *game);
 
 // CORE - UTILS

@@ -6,16 +6,11 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:06:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 15:21:27 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:27:37 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-
-// static void	free_infos(t_game *game)
-// {
-
-// }
 
 // Free toutes les lignes de mon tableau de strings
 void libere(char **elem)
@@ -37,9 +32,13 @@ void libere(char **elem)
 // Free ma structure map
 void	ft_free_map(t_game *game)
 {
-	if (game->map->info)
+	if (game->map->info->dimensions)
+		free(game->map->info->dimensions);
+	if (game->map->info->info)	
+		free(game->map->info->info);
+	if (game->map->info)	
 		free(game->map->info);
-	if (MAP)
+	if (MAP->map)
 		libere(game->map->map);
 	if (game->map->name)
 		free(game->map->name);

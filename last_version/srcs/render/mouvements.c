@@ -6,13 +6,13 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:54:19 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 17:06:34 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:15:51 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	evolve_display(t_game *game, int x, int y)
+void	evolve_display(t_game *game, int y, int x)
 {
 	int	width;
 	int	length;
@@ -48,7 +48,7 @@ void	moveUp(t_game *game, int x, int y)
 		else if (MAPS[x - 1][y] == 'E')
 		{
 			if (MAP->info->left_items == 0)
-				ft_error_free("GG, BG", game);
+				ft_error_free("\nGG BG !!!\n", game);
 			return ;
 		}
 		if (1 == 1) 
@@ -77,7 +77,7 @@ void	moveLeft(t_game *game, int x, int y)
 		else if (MAPS[x][y - 1] == 'E')
 		{
 			if (MAP->info->left_items == 0)
-				ft_error_free("GG BG !!!", game);
+				ft_error_free("\nGG BG !!!\n", game);
 			return ;
 		}
 		else 
@@ -106,7 +106,7 @@ void	moveDown(t_game *game, int x, int y)
 		else if (MAPS[x + 1][y] == 'E')
 		{
 			if (MAP->info->left_items == 0)
-				ft_error_free("GG BG !!!", game);
+				ft_error_free("\nGG BG !!!\n", game);
 			return;
 		}
 		else 
@@ -135,7 +135,7 @@ void	moveRight(t_game *game, int x, int y)
 		else if (MAPS[x][y + 1] == 'E')
 		{
 			if (MAP->info->left_items == 0)
-				ft_error_free("GG BG !!!", game);
+				ft_error_free("\nGG BG !!!\n", game);
 			return ;
 		}
 		else

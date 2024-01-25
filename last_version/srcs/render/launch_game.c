@@ -6,22 +6,22 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:12:54 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 17:06:08 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:27:24 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	affiche(t_game *game, t_texture *texture, int i, int j)
+static void	affiche(t_game *game, t_texture *texture, int width, int length)
 {
-	mlx_put_image_to_window(MLX->mlx, MLX->win, texture, j * 64, i * 64);
+	mlx_put_image_to_window(MLX->mlx, MLX->win, texture, length * 64, width * 64);
 }
 
 static void affiche_map(t_game *game)
 {
 	int	i ;
 	int	j ;
-	
+	// 
 	i = -1;
 	while (++i < WIDTH)
 	{
@@ -60,14 +60,21 @@ int	hook_repartor(int keycode, t_game *game)
 		else if (keycode == 'd') // D
 			moveRight(game, game->map->info->player.x, game->map->info->player.y);
 		else if (keycode == 65307) // Echap
-			ft_error_free("Manual stop of the game :/ you're so bad ... !", game);
+			ft_error_free("\nManual stop of the game :/ you're so bad ... !\n", game);
 		if (count != game->map->info->count_mouvements)
 		{
 			ft_printf("\rCompteur de mouvement : %d", game->map->info->count_mouvements);
-			evolve_display(game, game->map->info->player.x, game->map->info->player.y);
+			evolve_display(game, game->map->info->player.y, game->map->info->player.x);
 		}	
 	}
 	return (1);
+}
+
+int	red_cross(int keycode, t_game *game)
+{
+	(void)keycode;
+	ft_error_free("Manual stop of the game, you suck !\n", game);
+	return (0);
 }
 
 void	launch_game(t_game *game)
@@ -76,7 +83,6 @@ void	launch_game(t_game *game)
 	game->map->info->left_items = game->map->info->info->c_collectibles;
 	game->map->info->count_mouvements = 0;
 	mlx_hook(MLX->win, KeyPress, KeyPressMask, &hook_repartor, game);
-	// mlx_hook(game->win, 33, )
-	// mlx_mouse_hook();
-	mlx_loop(game->mlx);
+	mlx_hook(MLX->win, DestroyNotify, NoEventMask, &red_cross, game);
+	mlx_loop(game->mlx->mlx);
 }

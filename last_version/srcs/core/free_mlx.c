@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:07:06 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 11:24:19 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:22:09 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ void	ft_free_mlx(t_game *game)
 	if (game->mlx->mlx)
 		free_textures(game);
 	if (game->mlx->win)
-		free(game->mlx->win);
+		mlx_destroy_window(game->mlx->mlx, game->mlx->win);
 	if (game->mlx->mlx)
+	{
+		mlx_destroy_display(game->mlx->mlx);
 		free(game->mlx->mlx);
+	}	
 	free(game->mlx);
 }

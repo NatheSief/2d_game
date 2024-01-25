@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:58:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/23 18:50:42 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:24:42 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 # define TEXTS	game->mlx->texts
 # define MAPS	game->map->map
 
-# define LENGHT	MAP->info->dimensions.y
-# define WIDTH	MAP->info->dimensions.x
+# define LENGHT	MAP->info->dimensions->y
+# define WIDTH	MAP->info->dimensions->x
 
-# define COLL_PATH "./texts/texture_coll.xpm"
-# define EXIT_PATH "./texts/texture_exit.xpm"
-# define GROUND_PATH "./texts/texture_ground.xpm"
-# define PLAYER_PATH "./texts/texture_player.xpm"
-# define WALL_PATH "./texts/texture_wall.xpm"
+# define COLL_PATH "./textures/collectible.xpm"
+# define EXIT_PATH "./textures/exit.xpm"
+# define GROUND_PATH "./textures/ground.xpm"
+# define PLAYER_PATH "./textures/player.xpm"
+# define WALL_PATH "./textures/wall.xpm"
 
 # define T_COLL MLX->texts->t_collectibles
 # define T_EXIT MLX->texts->t_exit
@@ -64,7 +64,7 @@ typedef struct s_count
 typedef struct s_info
 {
 	int			count_mouvements;
-	t_point		dimensions;
+	t_point		*dimensions;
 	t_count		*info;
 	int			last_mouvement;
 	int			left_items;

@@ -32,18 +32,20 @@ WHITE		=	\033[0;97m
 SRCS		=	main.c				 	\
 				core/free_map.c			\
 				core/free_mlx.c			\
+				core/utils.c			\
 				core/handling_errors.c	\
+				core/map_alloc.c		\
 				core/init_map.c			\
 				core/init_mlx.c			\
-				core/utils.c			\
-				core/map_alloc.c		\
-				map/map.c				\
 				map/path.c				\
-				render/launch_game.c	\
+				map/map.c				\
 				render/mouvements.c		\
+				render/launch_game.c	\
 
 SRC		 	=	$(addprefix $(SRC_DIR), $(SRCS))
 OBJ		 	=	$(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+
+all: $(NAME)
 
 so_long_print :
 	@echo "$(GREEN) ------------------------------------------------------------------------$(DEF_COLOR)"
@@ -121,8 +123,6 @@ mlx_print:
 .c.o:
 	$(CC) $(FLAG) -c $< -o $@
 
-all: $(NAME)
-
 lib:
 	@make -sC $(LIBFT_PATH)
 
@@ -130,6 +130,9 @@ mlx: mlx_print
 	@make -sC $(MLX_PATH)
 
 $(NAME): lib mlx so_long_print $(OBJ_DIR) $(OBJ)
+	$(CC) $(FLAG) -o $(NAME) $(OBJ) -I$(INC_DIR) -L$(LIBFT_PATH) -lft $(MLX_EX)
+
+axel: $(OBJ_DIR) $(OBJ)
 	$(CC) $(FLAG) -o $(NAME) $(OBJ) -I$(INC_DIR) -L$(LIBFT_PATH) -lft $(MLX_EX)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
@@ -152,4 +155,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re so_long_print
