@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:37:58 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:32:49 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:34:39 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	get_dimensions_info(t_game *game, int fd)
 		WIDTH = ++widht;
 	}
 	free(line);
-	LENGHT = lenght - 1;
+	LENGHT = lenght;
 }
 
 // Permet d'initier la structure INFO
