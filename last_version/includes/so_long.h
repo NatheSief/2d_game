@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:49:35 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:32:35 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:08:51 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <assert.h>
 
 // Private headers
 # include "defines.h"

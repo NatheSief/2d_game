@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:55:46 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:32:22 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:09:50 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 		if (!ft_countchar(av[1], '.'))
 			ft_error("File doesn't have a valid name (multiple dots) !");
 		game = init_game(game, av[1]);
+		assert(game != 0);
 		check_map(game);
 		launch_game(game);
 	}

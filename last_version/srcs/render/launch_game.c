@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:12:54 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 12:27:24 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:29:47 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,13 @@ int	hook_repartor(int keycode, t_game *game)
 		else if (keycode == 'd') // D
 			moveRight(game, game->map->info->player.x, game->map->info->player.y);
 		else if (keycode == 65307) // Echap
+		{
+			ft_printf("game : %s\n",game->map->name);
+			int i = -1;
+			while(i++ < 13)
+				ft_printf( "ligne no %d : %s\n",i ,(game->map->map[i]));
 			ft_error_free("\nManual stop of the game :/ you're so bad ... !\n", game);
+		}
 		if (count != game->map->info->count_mouvements)
 		{
 			ft_printf("\rCompteur de mouvement : %d", game->map->info->count_mouvements);
