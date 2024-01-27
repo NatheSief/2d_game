@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 09:07:03 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 09:08:32 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:27:26 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	map_alloc(t_game *game, int fd)
 	{
 		i = -1;
 		// printf("WIDTH = %d\n", WIDTH);
-		while (++i < WIDTH)
+		while (++i  < WIDTH + 1)
 		{
 			line = get_next_line(fd);
+			if (!line)
+				break;
 			MAPS[i] = malloc(sizeof(char) * LENGHT + 1);
 			if (!MAPS[i])
 			{

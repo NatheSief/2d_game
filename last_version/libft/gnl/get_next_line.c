@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:41:09 by nsiefert          #+#    #+#             */
-/*   Updated: 2023/12/19 20:26:32 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:19:14 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*get_next_line(int fd)
 	}
 	temp[fd] = ft_read (temp[fd], fd, buf);
 	if (!temp[fd])
-		return (NULL);
+		return (free(temp[fd]), NULL);
 	if (!*temp[fd])
 	{
 		free (temp[fd]);

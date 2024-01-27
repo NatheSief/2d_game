@@ -1,7 +1,7 @@
 NAME		=	so_long
 
 CC		  	=	cc
-FLAG		=	-Wall -Wextra -g3 -fsanitize=address -fsanitize=integer -fsanitize=undefined -Og
+FLAG		=	-Wall -Wextra -g3
 
 LIBFT_PATH	=	./libft/
 LIBFT_FILE	=	libft.a

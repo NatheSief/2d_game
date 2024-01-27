@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:06:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 12:27:37 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:13:13 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void libere(char **elem)
 			free(elem[i]);
 			i++;
 		}
+		free(elem[i]);
 		free(elem);
 	}
 }
