@@ -1,3 +1,5 @@
+⚠️ - LINUX PLAYERS ONLY - ⚠️ (can be played on a VM)
+
 # SO-LONG
 
 This project is a very small 2D game. </br>
