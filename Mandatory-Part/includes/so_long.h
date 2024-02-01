@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:49:35 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/28 15:45:05 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 08:52:46 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 void	ft_error(char *str);
 void	ft_error_free(char *str, t_game *game);
 void	ft_free_struct(t_game *game);
+void	ft_end_game(char *str, t_game *game);
 
 // CORE - FREE
 void	ft_free_map(t_game *game);

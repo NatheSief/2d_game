@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 14:12:54 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/28 13:31:45 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 08:53:44 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	hook_repartor(int keycode, t_game *game)
 		else if (keycode == 'd')
 			move_right(game, PLAYER.x, PLAYER.y);
 		else if (keycode == 65307)
-			ft_end_game("Manual stop of the game :/\n", game);
+			ft_end_game("\nManual stop of the game :/\n", game);
 		if (count != game->map->info->count_mouvements)
 		{
 			ft_printf("\r Moves : %d", game->map->info->count_mouvements);
@@ -72,7 +72,7 @@ int	hook_repartor(int keycode, t_game *game)
 
 int	red_cross(t_game *game)
 {
-	ft_printf("Manual stop of the game via red cross press ! \n");
+	ft_printf("\nManual stop of the game via red cross press ! \n");
 	ft_free_struct(game);
 	exit(1);
 }
