@@ -21,13 +21,15 @@ Its purpose is to make you work with textures, sprites, and some other very basi
 
 2. Git clone the project ```git clone https://github.com/NateSief/2d_game.git```
 
-3. Go in the game folder ```cd 2d_game```
+3. Go in the game-project folder ```cd 2d_game/```
 
-4. Compile the game ```make mandatory```
+4. Go in the madatory folder ```cd Mandatory-Part/```
 
-5. Execute the game with a map of you choice ```./so_long mandatory-part/maps/```
+5. Compile the game ```make```
 
-6. Play with W,A,S,D keys
+6. Execute the game with a map of you choice ```./so_long maps/```
+
+7. Play with W,A,S,D keys
 
 ## MAGRATHEA
 While coding the Mandatory part, I realise I wanted to go way further than the little game I developped. I decided to create a full game, fun to play with way more liberty in the actions the player can do.
