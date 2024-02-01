@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:58:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 13:24:42 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 08:57:35 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 # define RES 64
 
-# define MLX_nw mlx_new_window
+# define MLX_NW mlx_new_window
 //	STRUCTURES 
 typedef struct s_texture
 {

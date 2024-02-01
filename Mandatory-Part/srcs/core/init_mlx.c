@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 11:24:35 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/28 13:58:09 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 08:58:11 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_mlx(t_game *game)
 		free(game);
 		exit(1);
 	}
-	MLX->win = MLX_nw(MLX->mlx, (LENGHT - 1) * RES, WIDTH * RES, MAP->name);
+	MLX->win = MLX_NW(MLX->mlx, (LENGHT - 1) * RES, WIDTH * RES, MAP->name);
 	MLX->texts = malloc(sizeof (void *) * 5);
 	if (!MLX->win || !MLX->texts)
 		ft_error_free("Problem while allocating the window !\n", game);
