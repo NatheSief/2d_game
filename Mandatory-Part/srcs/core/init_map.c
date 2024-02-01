@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:37:58 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/28 15:47:23 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:12:06 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ static void	init_map(t_game *game, char *str)
 {
 	int	fd;
 
+	init_map_pointers(game);
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
 		ft_error_free("Can't open the map file !", game);

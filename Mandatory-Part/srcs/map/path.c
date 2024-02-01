@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 12:44:29 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 12:27:12 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:10:11 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void	dfs(t_game *game, int i, int j)
 	else if (MAPS[i][j] == 'C')
 		MAP->info->info->c_collectibles--;
 	else if (MAPS[i][j] == 'E')
+	{
 		MAP->info->info->c_exit--;
+		return ;
+	}
 	dfs_expand(game, i, j);
 }
 

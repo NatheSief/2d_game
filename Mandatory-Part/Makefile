@@ -1,7 +1,7 @@
 NAME		=	so_long
 
 CC		  	=	cc
-FLAG		=	-Wall -Wextra -g3
+FLAG		=	-Werror -Wall -Wextra -g3
 
 LIBFT_PATH	=	./libft/
 LIBFT_FILE	=	libft.a
@@ -33,6 +33,7 @@ SRCS		=	main.c				 	\
 				core/free_map.c			\
 				core/free_mlx.c			\
 				core/utils.c			\
+				core/init_utils.c			\
 				core/handling_errors.c	\
 				core/map_alloc.c		\
 				core/init_map.c			\

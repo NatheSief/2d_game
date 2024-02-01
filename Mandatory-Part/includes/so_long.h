@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:49:35 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/02/01 08:52:46 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:15:20 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	map_alloc(t_game *game, int fd);
 char	*get_name(t_game *game, char *str);
 t_game	*init_game(t_game *game, char *str);
 void	init_mlx(t_game *game);
+void	init_map_pointers(t_game *game);
+void	init_mlx_pointers(t_game *game);
 
 // CORE - UTILS
 void	put_to_up(t_game *game);

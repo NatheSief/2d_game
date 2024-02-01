@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:06:00 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/27 11:13:13 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:28:36 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ void	libere(char **elem)
 // Free ma structure map
 void	ft_free_map(t_game *game)
 {
-	if (game->map->info->dimensions)
-		free(game->map->info->dimensions);
-	if (game->map->info->info)
-		free(game->map->info->info);
 	if (game->map->info)
+	{
+		if (game->map->info->dimensions)
+			free(game->map->info->dimensions);
+		if (game->map->info->info)
+			free(game->map->info->info);
 		free(game->map->info);
-	if (MAP->map)
+	}
+	if (game->map->map)
 		libere(game->map->map);
 	if (game->map->name)
 		free(game->map->name);
