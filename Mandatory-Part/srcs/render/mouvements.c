@@ -6,7 +6,7 @@
 /*   By: nsiefert <nsiefert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 17:54:19 by nsiefert          #+#    #+#             */
-/*   Updated: 2024/01/25 12:15:51 by nsiefert         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:55:10 by nsiefert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	move_up(t_game *game, int x, int y)
 	{
 		if (MAPS[x - 1][y] == 'C')
 		{
+			MAPS[x - 1][y] = 'P';
 			MAP->info->left_items--;
-			MAPS[x - 1][y] = 'G';
 		}
 		else if (MAPS[x - 1][y] == 'E')
 		{
@@ -51,12 +51,9 @@ void	move_up(t_game *game, int x, int y)
 				ft_end_game("\nGG BG !!!\n", game);
 			return ;
 		}
-		else
-		{
-			MAPS[x][y] = 'G';
-			(x)--;
-			MAPS[x][y] = 'P';
-		}
+		MAPS[x][y] = 'G';
+		(x)--;
+		MAPS[x][y] = 'P';
 		MAP->info->last_mouvement = 1;
 		MAP->info->count_mouvements++;
 	}
@@ -71,8 +68,8 @@ void	move_left(t_game *game, int x, int y)
 	{
 		if (MAPS[x][y - 1] == 'C')
 		{
-			MAP->info->left_items--;
 			MAPS[x][y - 1] = 'G';
+			MAP->info->left_items--;
 		}
 		else if (MAPS[x][y - 1] == 'E')
 		{
@@ -80,12 +77,9 @@ void	move_left(t_game *game, int x, int y)
 				ft_end_game("\nGG BG !!!\n", game);
 			return ;
 		}
-		else
-		{
-			MAPS[x][y] = 'G';
-			(y)--;
-			MAPS[x][y] = 'P';
-		}
+		MAPS[x][y] = 'G';
+		(y)--;
+		MAPS[x][y] = 'P';
 		MAP->info->last_mouvement = 2;
 		MAP->info->count_mouvements++;
 	}
@@ -100,8 +94,8 @@ void	move_down(t_game *game, int x, int y)
 	{
 		if (MAPS[x + 1][y] == 'C')
 		{
-			MAP->info->left_items--;
 			MAPS[x + 1][y] = 'G';
+			MAP->info->left_items--;
 		}
 		else if (MAPS[x + 1][y] == 'E')
 		{
@@ -109,12 +103,9 @@ void	move_down(t_game *game, int x, int y)
 				ft_end_game("\nGG BG !!!\n", game);
 			return ;
 		}
-		else
-		{
-			MAPS[x][y] = 'G';
-			(x)++;
-			MAPS[x][y] = 'P';
-		}
+		MAPS[x][y] = 'G';
+		(x)++;
+		MAPS[x][y] = 'P';
 		MAP->info->last_mouvement = 3;
 		MAP->info->count_mouvements++;
 	}
@@ -129,8 +120,8 @@ void	move_right(t_game *game, int x, int y)
 	{
 		if (MAPS[x][y + 1] == 'C')
 		{
-			(MAP->info->left_items)--;
 			MAPS[x][y + 1] = 'G';
+			(MAP->info->left_items)--;
 		}
 		else if (MAPS[x][y + 1] == 'E')
 		{
@@ -138,12 +129,9 @@ void	move_right(t_game *game, int x, int y)
 				ft_end_game("\nGG BG !!!\n", game);
 			return ;
 		}
-		else
-		{
 		MAPS[x][y] = 'G';
 		(y)++;
 		MAPS[x][y] = 'P';
-		}
 		MAP->info->last_mouvement = 4;
 		MAP->info->count_mouvements++;
 	}
