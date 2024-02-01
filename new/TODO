@@ -1,6 +1,0 @@
-SO-LONG :
-	☐ 
-
-
-NOTES :
-	- WIDTH & LENGTH representent le nombre de lignes et colonnes, donc <= est necessaire, pas besoin de -1
